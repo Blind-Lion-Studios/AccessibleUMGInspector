@@ -19,7 +19,7 @@ All operations are strictly read-only:
 ## Operation 1: `GetInspectorCapabilities`
 
 ### Description
-Returns plugin version metadata, supported Unreal Engine version, list of available inspection operations, format types, and explicit safety guarantees.
+Returns plugin version metadata, supported Unreal Engine version, list of available inspection operations, format types, and explicit safety design principles.
 
 ### Inputs
 None.
@@ -31,7 +31,7 @@ Returns `FInspectorCapabilities`:
 - `SupportedEngineVersion` (`FString`): `"5.8.2"`
 - `SupportedOperations` (`TArray<FString>`): Array of 5 operation names.
 - `SupportedFormats` (`TArray<FString>`): `["NvdaText", "Json", "Both"]`
-- `bReadOnlyGuaranteed` (`bool`): `true`
+- `bReadOnlyByDesign` (`bool`): `true`
 - `bRequiresExplicitAssetPath` (`bool`): `true`
 - `bZeroSyntheticInput` (`bool`): `true`
 - `bZeroPackageMutation` (`bool`): `true`
@@ -185,6 +185,6 @@ Evaluates automated accessibility rules (`A11Y-01` through `A11Y-14`) across ser
 Across all 5 operations:
 1. **No Hit-Test Grid Claim**: Passive bounds checking via `GetTickSpaceGeometry()` does not inspect Unreal's internal hit-test grid or prove pointer routing.
 2. **No OS Accessibility Tree Claim**: Authoritative UMG accessibility properties do not guarantee OS UI Automation (UIA) or IAccessible2 (IA2) tree inclusion.
-3. **No Direct Screen Reader Speech Guarantee**: NVDA text output is formatted for screen-reader readability; it does not directly drive the NVDA speech engine.
+3. **No Direct Screen Reader Speech Verification**: NVDA text output is formatted for screen-reader readability; it does not directly drive the NVDA speech engine.
 4. **No Crash Causality Claim**: State divergences and audit findings describe observed structure; they do not diagnose engine-level crashes.
 5. **No Automatic Remediation**: All operations are read-only. Fixing defects requires developer authoring in Blueprint or C++.

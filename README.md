@@ -1,65 +1,103 @@
 # Accessible UMG Inspector
 
-**Accessible UMG Inspector** is a dedicated, read-only Unreal Engine 5.8 Editor plugin created by **Blind Lion Studios** for blind and visually impaired (BVI) developers, technical designers, and QA engineers.
+Accessible UMG Inspector is a dedicated, read-only Unreal Engine Editor plugin created by Blind Lion Studios for blind and visually impaired (BVI) developers, technical designers, and QA engineers.
 
-It exposes accessibility-first inspection of serialized UMG Widget Blueprints and runtime UI state via Epic's native **Unreal MCP** and **ToolsetRegistry** transport.
+The plugin provides accessibility-first inspection of authored UMG Widget Blueprints and live runtime viewport UI state, exposing dual output formats: structured JSON for automation and concise, hierarchically numbered plain text optimized for NVDA and screen-reader review.
 
----
-
-## Key Principles
-
-1. **Accessibility-First Output**: Provides dual output: structured JSON for automation and concise, hierarchically numbered plain text optimized for NVDA and screen-reader review.
-2. **Strict Read-Only Safety**: Zero package dirtying, zero asset modification, zero transaction mutations, and zero synthetic input simulation.
-3. **Deterministic Serialized & Runtime Reflection**: Authoritative introspection of `UWidgetBlueprint`, `UWidgetTree`, `UWidget`, `UPanelSlot`, `AccessibleWidgetData`, and navigation rules.
-4. **Two-Tier Visibility & Ancestor Propagation**: Decouples authored local widget visibility (`LocalVisibility`) from effective runtime exposure (`EffectiveVisibility`). Inactive/collapsed ancestor screens faithfully suppress descendant evaluation without discarding authored local design properties.
-5. **Project-Neutral**: Contains no hardcoded project names, game shell states, or proprietary control identifiers.
+All capabilities are accessible via Epic's native Unreal MCP (Model Context Protocol) and ToolsetRegistry transport.
 
 ---
 
-## Supported Engine Version
+## What the tool does
 
-- **Plugin Version**: **0.1.0-rc.1**
-- **Target Engine**: Unreal Engine **5.8.2** (`BuildId: 55116800`)
-- **Target Platform**: Win64 Editor (`TargetAllowList: ["Editor"]`)
-- **Transport**: Native Unreal MCP (`http://127.0.0.1:8000/mcp`) via `ToolsetRegistry`
-
----
-
-## Toolset Surface
-
-### `AccessibleUMGInspectorToolset.GetInspectorCapabilities`
-Returns capability metadata, supported operations, format types, and safety guarantees.
-
-### `AccessibleUMGInspectorToolset.InspectSerializedWidgetBlueprint`
-Accepts an explicit asset path (e.g. `"/Game/UI/WBP_Menu"`) and returns complete serialized widget hierarchy, slot properties, accessibility attributes, navigation rules, bindings, duplicate name warnings, and package clean-state verification.
-
-### `AccessibleUMGInspectorToolset.InspectRuntimeUserWidget`
-Inspects live runtime `UUserWidget` instances in active PIE or Game viewports. Captures active visibility, passive Slate geometry (`GetTickSpaceGeometry()`), passive focus states (`FSlateApplication`), hover states, and accessibility properties without spawning Slate widgets (`TakeWidget` is never called).
-
-### `AccessibleUMGInspectorToolset.CompareSerializedAndRuntime`
-Reconciles an authored `UWidgetBlueprint` asset against a live runtime `UUserWidget` hierarchy. Classifies every node (`Matched`, `Ambiguous`, `SerializedOnly`, `RuntimeOnly`, `Unavailable`, `Unsupported`), records structural/visibility/state/accessibility/geometry discrepancies, and surfaces non-mutating evidence chains.
-
-### `AccessibleUMGInspectorToolset.AuditWidgetAccessibility`
-Evaluates automated accessibility rules (A11Y-01 through A11Y-14) across serialized, runtime, and differential evidence. Classifies findings (`Error`, `Warning`, `Info`, `NotEvaluated`), grounds assertions in explicit confidence bases (`Direct`, `Derived`, `Ambiguous`, `Unavailable`), provides remediation guidance and limitations, and generates screen-reader-optimized NVDA text and structured JSON.
+1. Read-only Unreal Engine Editor plugin: Operates passively without modifying assets, dirtying packages, or altering runtime UI states.
+2. Serialized UMG inspection: Authoritative reflection of `UWidgetBlueprint`, `UWidgetTree`, `UWidget`, `UPanelSlot`, `AccessibleWidgetData`, navigation rules, and delegate bindings.
+3. Live runtime UMG and cached Slate inspection: Passive inspection of live `UUserWidget` instances, `GetTickSpaceGeometry()` screen coordinates, focus states via `FSlateApplication`, hover states, and effective visibility without forcing Slate widget construction (`TakeWidget` is never invoked).
+4. Serialized and runtime comparison: Differential reconciliation classifying nodes as Matched, Ambiguous, SerializedOnly, RuntimeOnly, Unavailable, or Unsupported, recording discrepancies across visibility, state, accessibility, and geometry.
+5. Evidence-qualified accessibility audits: Evaluates automated rules (A11Y-01 through A11Y-14) with explicit confidence bases (`Direct`, `Derived`, `Ambiguous`, `Unavailable`), rule limitations, and actionable remediation guidance.
+6. Hierarchically numbered NVDA-friendly text: Screen-reader-friendly plain-text reports formatted with clear parent-child numbering (`1.`, `1.1.`, `1.1.2.`) so blind developers can navigate UI hierarchies without relying on visual indentation.
+7. Structured JSON: Complete machine-readable output for automated pipelines, external tools, and agent workflows.
 
 ---
 
-## Documentation Index
+## Current support
 
-- [Architecture Specification](file:///C:/BLS/AccessibleUMGInspector/Docs/ARCHITECTURE.md)
-- [Audit Rule Reference (A11Y-01 to A11Y-14)](file:///C:/BLS/AccessibleUMGInspector/Docs/AUDIT_RULE_REFERENCE.md)
-- [MCP Tool Reference](file:///C:/BLS/AccessibleUMGInspector/Docs/MCP_TOOL_REFERENCE.md)
-- [NVDA Command & Navigation Guide](file:///C:/BLS/AccessibleUMGInspector/Docs/NVDA_COMMAND_GUIDE.md)
-- [Installation Guide](file:///C:/BLS/AccessibleUMGInspector/Docs/INSTALLATION.md)
-- [Removal Guide](file:///C:/BLS/AccessibleUMGInspector/Docs/REMOVAL.md)
-- [Testing & Automation Guide](file:///C:/BLS/AccessibleUMGInspector/Docs/TESTING.md)
-- [Security & Safety Specification](file:///C:/BLS/AccessibleUMGInspector/Docs/SECURITY_AND_SAFETY.md)
-- [Known Limitations & Non-Claims](file:///C:/BLS/AccessibleUMGInspector/Docs/KNOWN_LIMITATIONS.md)
-- [Compatibility Matrix](file:///C:/BLS/AccessibleUMGInspector/Docs/COMPATIBILITY.md)
-- [Case Study: Isolated GridFall Proving Proof](file:///C:/BLS/AccessibleUMGInspector/Docs/CASE_STUDY_GRIDFALL_ISOLATED_PROOF.md)
-- [Development Guidelines](file:///C:/BLS/AccessibleUMGInspector/Docs/DEVELOPMENT_GUIDELINES.md)
-- [Changelog](file:///C:/BLS/AccessibleUMGInspector/CHANGELOG.md)
-- [License](file:///C:/BLS/AccessibleUMGInspector/LICENSE)
+- Engine version: Unreal Engine 5.8.2 (`BuildId: 55116800`)
+- Platform: Windows Editor (`Win64`, `TargetAllowList: ["Editor"]`)
+- Transport: Epic native Unreal MCP (`http://127.0.0.1:8000/mcp`) via `ToolsetRegistry`
+- Release status: Experimental release candidate 0.1.0-rc.1
+
+---
+
+## What it does not do
+
+1. No asset remediation: Does not edit Blueprints, mutate packages, or automatically apply fixes.
+2. No user-input simulation: Does not dispatch synthetic keystrokes, mouse clicks, hover events, or touch gestures.
+3. No PIE lifecycle control: Does not start, stop, or pause PIE (Play-In-Editor) or Game sessions.
+4. No OS accessibility-tree inspection: Does not introspect Windows UI Automation (UIA) or IAccessible2 (IA2) trees.
+5. No direct NVDA verification: Does not directly drive screen-reader audio, speech synthesis, or verify spoken output.
+6. No hit-test-grid verification: Does not introspect the Slate hit-test grid, pointer routing, or clipping rules.
+7. No accessibility certification: Automated audit findings are development evidence, not certification of legal or regulatory compliance.
+8. No crash-cause determination: Discrepancies surface structural divergence, not engine crash diagnostics or memory corruption causes.
+
+---
+
+## Project status
+
+Accessible UMG Inspector is provided as-is as an experimental accessibility development tool.
+
+Blind Lion Studios does not guarantee support, maintenance, compatibility updates, issue resolution, or continued development. Contributions may be reviewed when capacity and project priorities allow.
+
+Automated findings produced by this tool are development evidence, not certification of accessibility or regulatory compliance.
+
+---
+
+## Contributions
+
+Focused bug reports and narrowly scoped pull requests are welcome. Submission does not guarantee review, acceptance, support, or a response within any particular period.
+
+Before proposing new infrastructure or major features, describe the verified accessibility gap, existing alternatives considered, and why the change belongs in this plugin.
+
+---
+
+## Future accessibility opportunities
+
+This repository may grow when real Unreal Engine development exposes reusable accessibility gaps that existing mature tools do not solve.
+
+Potential future work should remain evidence-driven, bounded, read-only where practical, and useful beyond one game project. Ideas may include focus-path inspection, transition-state comparison, accessible automation summaries, crash-evidence narration, input-mapping audits, audio-accessibility inspection, subtitle auditing, and text representations of visual Unreal assets.
+
+This section is not a committed roadmap.
+
+---
+
+## Toolset operations
+
+All operations belong to the toolset `AccessibleUMGInspector.AccessibleUMGInspectorToolset`:
+
+1. `GetInspectorCapabilities`: Returns capability metadata, supported operations, format types, and read-only safety design flags.
+2. `InspectSerializedWidgetBlueprint`: Inspects an authored `UWidgetBlueprint` asset on disk/memory given an explicit asset path.
+3. `InspectRuntimeUserWidget`: Inspects live `UUserWidget` instances in active PIE or Game viewports.
+4. `CompareSerializedAndRuntime`: Reconciles an authored asset against live runtime UI state.
+5. `AuditWidgetAccessibility`: Evaluates accessibility rules (A11Y-01 through A11Y-14) across serialized, runtime, and differential evidence.
+
+---
+
+## Documentation index
+
+- [Architecture Specification](Docs/ARCHITECTURE.md)
+- [Audit Rule Reference (A11Y-01 to A11Y-14)](Docs/AUDIT_RULE_REFERENCE.md)
+- [MCP Tool Reference](Docs/MCP_TOOL_REFERENCE.md)
+- [NVDA Command & Navigation Guide](Docs/NVDA_COMMAND_GUIDE.md)
+- [Installation Guide](Docs/INSTALLATION.md)
+- [Removal Guide](Docs/REMOVAL.md)
+- [Testing & Automation Guide](Docs/TESTING.md)
+- [Security & Safety Specification](Docs/SECURITY_AND_SAFETY.md)
+- [Known Limitations & Non-Claims](Docs/KNOWN_LIMITATIONS.md)
+- [Compatibility Matrix](Docs/COMPATIBILITY.md)
+- [Case Study: Isolated GridFall Proving Proof](Docs/CASE_STUDY_GRIDFALL_ISOLATED_PROOF.md)
+- [Development Guidelines](Docs/DEVELOPMENT_GUIDELINES.md)
+- [Changelog](CHANGELOG.md)
+- [License](LICENSE)
 
 ---
 

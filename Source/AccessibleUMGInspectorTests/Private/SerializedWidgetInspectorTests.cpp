@@ -152,7 +152,7 @@ bool FAccessibleUMGInspectorCapabilitiesTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("PluginName should match"), Caps.PluginName, TEXT("AccessibleUMGInspector"));
 	TestEqual(TEXT("PluginVersion should match"), Caps.PluginVersion, TEXT("0.1.0-rc.1"));
 	TestEqual(TEXT("EngineVersion should match"), Caps.SupportedEngineVersion, TEXT("5.8.2"));
-	TestTrue(TEXT("ReadOnlyGuaranteed should be true"), Caps.bReadOnlyGuaranteed);
+	TestTrue(TEXT("ReadOnlyByDesign should be true"), Caps.bReadOnlyByDesign);
 	TestTrue(TEXT("RequiresExplicitAssetPath should be true"), Caps.bRequiresExplicitAssetPath);
 	TestTrue(TEXT("ZeroSyntheticInput should be true"), Caps.bZeroSyntheticInput);
 	TestTrue(TEXT("ZeroPackageMutation should be true"), Caps.bZeroPackageMutation);

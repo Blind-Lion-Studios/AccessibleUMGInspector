@@ -21,7 +21,7 @@ class UAccessibleUMGInspectorToolset : public UToolsetDefinition
 public:
 
 	/**
-	 * Returns inspector plugin version, supported engine version, operations, and safety guarantees.
+	 * Returns inspector plugin version, supported engine version, operations, and safety design.
 	 */
 	UFUNCTION(meta = (AICallable), Category = "AccessibleUMGInspector")
 	static ACCESSIBLEUMGINSPECTOR_API FInspectorCapabilities GetInspectorCapabilities();

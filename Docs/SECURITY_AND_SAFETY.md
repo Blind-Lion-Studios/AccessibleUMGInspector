@@ -1,13 +1,13 @@
 # Security and Safety Specification: Accessible UMG Inspector
 
 ## Core Safety Philosophy
-Accessible UMG Inspector is engineered with strict, verifiable read-only safety guarantees. It serves as an observational inspection layer that developers, QA engineers, and automated agents can trust never to corrupt assets, alter runtime states, or introduce memory leaks.
+Accessible UMG Inspector is engineered with a strict, verifiable read-only safety design. It serves as an observational inspection layer that developers, QA engineers, and automated agents can trust never to corrupt assets, alter runtime states, or introduce memory leaks.
 
 ---
 
 ## 1. Package and Asset Immutability
 - **Zero Asset Dirtying**: Inspection of serialized assets uses passive object reflection. At no point is `Modify()`, `MarkPackageDirty()`, or `SetDirtyFlag(true)` called.
-- **Package Verification**: `InspectSerializedWidgetBlueprint` verifies `UPackage::IsDirty()` before and after inspection. If the package was clean prior to inspection, it is guaranteed to remain clean after inspection.
+- **Package Verification**: `InspectSerializedWidgetBlueprint` verifies `UPackage::IsDirty()` before and after inspection. If the package was clean prior to inspection, it remains clean after inspection as verified by pre- and post-inspection package state checks.
 - **Zero Asset Saving**: Neither `SavePackage()` nor any file serialization API is ever invoked.
 - **Zero Blueprint Recompilation**: Assets are inspected as-is without invoking `FKismetEditorUtilities::CompileBlueprint` or mutating class generated headers.
 
@@ -40,8 +40,8 @@ Accessible UMG Inspector is engineered with strict, verifiable read-only safety 
 
 ---
 
-## 4. Source Audit Verification
-A comprehensive source code audit of all production code (`Source/AccessibleUMGInspector`) was conducted to verify absence of prohibited mutation or interaction APIs:
+## 4. Static Prohibited-API Source Scan
+A static prohibited-API source scan of all production code (`Source/AccessibleUMGInspector`) was conducted to verify absence of prohibited mutation or interaction APIs:
 
 | Prohibited API | Production Matches | Classification | Result |
 | :--- | :--- | :--- | :--- |

@@ -16,7 +16,7 @@ These instructions govern all AI agent and developer contributions to the `Acces
 
 ---
 
-## 2. Read-Only Safety Guarantees
+## 2. Read-Only Safety Principles
 
 Every tool and inspection function in this plugin must adhere to the read-only contract:
 1. **No Mutations**: Never call `Modify()`, `MarkPackageDirty()`, property setters, or execute state-altering delegates.

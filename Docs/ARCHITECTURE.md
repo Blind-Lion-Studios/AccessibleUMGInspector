@@ -79,7 +79,7 @@ The toolset is registered with Unreal Engine via `UToolsetDefinition` and expose
 
 ### `GetInspectorCapabilities()`
 - Inputs: None.
-- Output: `FInspectorCapabilities` (version, engine, supported operations, format types, safety guarantees).
+- Output: `FInspectorCapabilities` (version, engine, supported operations, format types, safety design).
 
 ### `InspectSerializedWidgetBlueprint(AssetPath, Format)`
 - Inputs:

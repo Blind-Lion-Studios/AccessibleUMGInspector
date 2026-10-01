@@ -31,7 +31,7 @@ From the isolated proofs in GridFall:
   - If specified, matches exact `GetPathName()`, then unique `GetName()`, then unique class name. If multiple match -> `Ambiguous`. If 0 match -> `Unavailable`.
 
 ### Decision 3: Traversal Safety & Bounded Recursion
-- **Cycle Prevention**: A `TSet<UWidget*> VisitedWidgets` tracker guarantees that circular object references or nested widgets cannot induce infinite recursion.
+- **Cycle Prevention**: A `TSet<UWidget*> VisitedWidgets` tracker ensures that circular object references or nested widgets cannot induce infinite recursion.
 - **Depth Clamping**: `MaxDepth` is clamped to `[1, 100]` (default 32). Traversals exceeding depth set `Report.bTruncated = true`.
 - **Node Cap**: Total inspected nodes are capped at 500. Exceeding this limit stops expansion and sets `Report.bTruncated = true`.
 

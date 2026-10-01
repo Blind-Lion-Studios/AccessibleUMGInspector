@@ -716,7 +716,7 @@ struct FInspectorCapabilities
 	};
 
 	UPROPERTY(BlueprintReadWrite, Category = "AccessibleUMGInspector")
-	bool bReadOnlyGuaranteed = true;
+	bool bReadOnlyByDesign = true;
 
 	UPROPERTY(BlueprintReadWrite, Category = "AccessibleUMGInspector")
 	bool bRequiresExplicitAssetPath = true;

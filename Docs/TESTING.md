@@ -31,7 +31,7 @@ To run all Accessible UMG Inspector automation tests headlessly via `UnrealEdito
 ## Test Suite Architecture (112 Total Tests)
 
 ### 1. Serialized Widget Inspector Tests (`AccessibleUMGInspector.Serialized.*` — 11 Tests)
-Implemented in [`SerializedWidgetInspectorTests.cpp`](file:///C:/BLS/AccessibleUMGInspector/Source/AccessibleUMGInspectorTests/Private/SerializedWidgetInspectorTests.cpp):
+Implemented in [`SerializedWidgetInspectorTests.cpp`](../Source/AccessibleUMGInspectorTests/Private/SerializedWidgetInspectorTests.cpp):
 1. `Capabilities`: Verifies plugin version (`0.1.0-rc.1`), engine version (`5.8.2`), safety flags.
 2. `WidgetState`: Verifies serialized visibility, enabled state, focusability, and variable exposure.
 3. `PanelSlots`: Introspects `CanvasPanelSlot` and `VerticalBoxSlot` layout properties.
@@ -45,7 +45,7 @@ Implemented in [`SerializedWidgetInspectorTests.cpp`](file:///C:/BLS/AccessibleU
 11. `JsonValidity`: Confirms valid structured JSON serialization.
 
 ### 2. Runtime Widget Inspector Tests (`AccessibleUMGInspector.Runtime.*` — 20 Tests)
-Implemented in [`RuntimeWidgetInspectorTests.cpp`](file:///C:/BLS/AccessibleUMGInspector/Source/AccessibleUMGInspectorTests/Private/RuntimeWidgetInspectorTests.cpp):
+Implemented in [`RuntimeWidgetInspectorTests.cpp`](../Source/AccessibleUMGInspectorTests/Private/RuntimeWidgetInspectorTests.cpp):
 12. `NoEligibleWidget`: Handles empty viewport scenarios cleanly.
 13. `AmbiguousCandidate`: Detects and surfaces multiple candidate widgets without choosing.
 14. `SingleTopLevelResolution`: Resolves single top-level user widget when reference is omitted.
@@ -68,7 +68,7 @@ Implemented in [`RuntimeWidgetInspectorTests.cpp`](file:///C:/BLS/AccessibleUMGI
 31. `SelfHitTestInvisibleChildBehavior`: Verifies `SelfHitTestInvisible` allows child widgets to remain interactive.
 
 ### 3. Differential Comparator Tests (`AccessibleUMGInspector.Differential.*` — 26 Tests)
-Implemented in [`DifferentialComparatorTests.cpp`](file:///C:/BLS/AccessibleUMGInspector/Source/AccessibleUMGInspectorTests/Private/DifferentialComparatorTests.cpp):
+Implemented in [`DifferentialComparatorTests.cpp`](../Source/AccessibleUMGInspectorTests/Private/DifferentialComparatorTests.cpp):
 32–57: Comprehensive matching and reconciliation tests:
 - Exact 1-to-1 matching by name and class.
 - Disambiguation by parent container name.
@@ -80,7 +80,7 @@ Implemented in [`DifferentialComparatorTests.cpp`](file:///C:/BLS/AccessibleUMGI
 - Priority-triage sorting (`Ambiguous` -> `Matched` -> `SerializedOnly` -> `RuntimeOnly`).
 
 ### 4. Accessibility Audit Engine Tests (`AccessibleUMGInspector.Audit.*` — 55 Tests)
-Implemented in [`AccessibilityAuditEngineTests.cpp`](file:///C:/BLS/AccessibleUMGInspector/Source/AccessibleUMGInspectorTests/Private/AccessibilityAuditEngineTests.cpp):
+Implemented in [`AccessibilityAuditEngineTests.cpp`](../Source/AccessibleUMGInspectorTests/Private/AccessibilityAuditEngineTests.cpp):
 58–112: Comprehensive automated rule evaluation tests:
 - **`A11Y-01`**: Hidden serialized controls exposed at runtime; suppression for legitimate activations.
 - **`A11Y-02`**: Visible unnamed interactive controls; suppression for non-interactive widgets.

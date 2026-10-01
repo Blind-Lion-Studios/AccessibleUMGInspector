@@ -50,7 +50,7 @@ FSerializedWidgetBlueprintReport FSerializedWidgetInspector::InspectAsset(const 
 	bool bIsDirtyAfter = PostPackage ? PostPackage->IsDirty() : false;
 	Report.bPackageRemainsCleanAfter = !bIsDirtyAfter;
 
-	// Enforce fail-closed read-only guarantee: if package was clean before, it must remain clean after
+	// Enforce fail-closed read-only invariant: if package was clean before, it must remain clean after
 	if (!bWasDirtyBefore && bIsDirtyAfter)
 	{
 		Report.bSuccess = false;

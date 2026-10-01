@@ -21,7 +21,7 @@ Accessible UMG Inspector is designed to provide authoritative, non-mutating UMG 
 
 ---
 
-## 3. No Direct Screen-Reader Audio or Speech Guarantee
+## 3. No Direct Screen-Reader Audio or Speech Verification
 - **Observed Evidence**: The inspector formats plain-text reports (`NvdaText`) designed for optimal navigation with NVDA review shortcuts.
 - **Limitation**: The inspector does **not** communicate directly with screen-reader processes or verify speech synthesis.
 - **Why It Matters**: Plain-text formatting ensures that a developer reading an automated report can navigate efficiently; it does not verify that a player in the game will hear the intended voice announcement.
