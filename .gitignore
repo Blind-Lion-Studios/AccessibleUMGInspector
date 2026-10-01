@@ -1,0 +1,17 @@
+# Unreal Engine generated directories
+Binaries/
+Intermediate/
+DerivedDataCache/
+Saved/
+.vs/
+.idea/
+.vscode/
+*.VC.db
+*.opendb
+*.sln
+*.suo
+*.user
+*.code-workspace
+Host/
+Saved/
+

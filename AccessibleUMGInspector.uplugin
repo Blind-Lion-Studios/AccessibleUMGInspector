@@ -1,0 +1,47 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1.0-rc.1",
+	"FriendlyName": "Accessible UMG Inspector",
+	"Description": "Accessibility-first serialized and runtime UMG inspection tools for blind and visually impaired developers.",
+	"Category": "Accessibility",
+	"CreatedBy": "Blind Lion Studios",
+	"CreatedByURL": "https://blindlionstudios.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": false,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"EditorOnly": true,
+	"EnabledByDefault": false,
+	"Modules": [
+		{
+			"Name": "AccessibleUMGInspector",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "AccessibleUMGInspectorTests",
+			"Type": "Editor",
+			"LoadingPhase": "Default",
+			"TargetAllowList": [
+				"Editor"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ToolsetRegistry",
+			"Enabled": true
+		},
+		{
+			"Name": "ModelContextProtocol",
+			"Enabled": true
+		}
+	]
+}
